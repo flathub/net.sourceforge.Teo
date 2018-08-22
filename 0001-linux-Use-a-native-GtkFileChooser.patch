@@ -1,21 +1,27 @@
-From 5478a813fbe3fc5662386139b4ad984e38fcfccd Mon Sep 17 00:00:00 2001
+From 986b2558906332614f37d3f1156d669b8d2ef168 Mon Sep 17 00:00:00 2001
 From: Bastien Nocera <hadess@hadess.net>
 Date: Sat, 23 Jun 2018 16:51:06 +0200
 Subject: [PATCH] linux: Use a native GtkFileChooser
 
 So that we get automatic Flatpak and portals support.
 ---
- src/linux/ugui/ucass.c    | 6 +++---
- src/linux/ugui/udisk.c    | 6 +++---
- src/linux/ugui/umemo.c    | 6 +++---
- src/linux/ugui/uprinter.c | 6 +++---
- 4 files changed, 12 insertions(+), 12 deletions(-)
+ src/linux/ugui/ucass.c    | 12 ++++++------
+ src/linux/ugui/udisk.c    | 12 ++++++------
+ src/linux/ugui/umemo.c    | 12 ++++++------
+ src/linux/ugui/uprinter.c | 13 ++++---------
+ 4 files changed, 22 insertions(+), 27 deletions(-)
 
 diff --git a/src/linux/ugui/ucass.c b/src/linux/ugui/ucass.c
-index b4f2a81..926a219 100644
+index b4f2a81..442aa74 100644
 --- a/src/linux/ugui/ucass.c
 +++ b/src/linux/ugui/ucass.c
-@@ -325,11 +325,11 @@ static void open_file (GtkButton *button, gpointer data)
+@@ -320,16 +320,16 @@ static void open_file (GtkButton *button, gpointer data)
+ {
+     static int first=1;
+     GtkFileFilter *filter;
+-    static GtkWidget *dialog;
++    static GtkFileChooserNative *dialog;
+     gchar *folder_name;
      gchar *file_name;
  
      if (first) {
@@ -30,11 +36,35 @@ index b4f2a81..926a219 100644
          filter = gtk_file_filter_new ();
          gtk_file_filter_set_name (filter, is_fr?"Fichiers cassette (.k7)":"Tape files (.k7)");
          gtk_file_filter_add_mime_type (filter, "application/x-thomson-cassette");
+@@ -356,7 +356,7 @@ static void open_file (GtkButton *button, gpointer data)
+     if (access("./disks/", F_OK) == 0)
+         (void)gtk_file_chooser_set_current_folder((GtkFileChooser *)dialog, "./k7/");
+ 
+-    if (gtk_dialog_run ((GtkDialog *)dialog) == GTK_RESPONSE_ACCEPT)
++    if (gtk_native_dialog_run (GTK_NATIVE_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
+     {
+         file_name = gtk_file_chooser_get_filename((GtkFileChooser *)dialog);
+         if (load_cass (file_name) >= 0)
+@@ -375,7 +375,7 @@ static void open_file (GtkButton *button, gpointer data)
+         }
+         g_free (file_name);
+     }
+-    gtk_widget_hide(dialog);
++    gtk_native_dialog_hide(GTK_NATIVE_DIALOG(dialog));
+     (void)button;
+     (void)data;
+ }
 diff --git a/src/linux/ugui/udisk.c b/src/linux/ugui/udisk.c
-index d6e9c8a..99881bc 100644
+index d6e9c8a..5b30ea6 100644
 --- a/src/linux/ugui/udisk.c
 +++ b/src/linux/ugui/udisk.c
-@@ -309,11 +309,11 @@ static void open_file (GtkButton *button, struct FILE_VECTOR *vector)
+@@ -304,16 +304,16 @@ static void emptying_button_clicked (GtkButton *button, struct FILE_VECTOR *vect
+ static void open_file (GtkButton *button, struct FILE_VECTOR *vector)
+ {
+     GtkFileFilter *filter;
+-    static GtkWidget *dialog;
++    static GtkFileChooserNative *dialog;
+     char *folder_name;
      char *file_name;
  
      if (vector->first_file) {
@@ -49,11 +79,35 @@ index d6e9c8a..99881bc 100644
          filter = gtk_file_filter_new ();
          gtk_file_filter_set_name (filter, is_fr?"Fichiers disquette"
                                                 :"Disk files");
+@@ -349,7 +349,7 @@ static void open_file (GtkButton *button, struct FILE_VECTOR *vector)
+             (GtkFileChooser *)dialog,
+             "./disks/");
+ 
+-    if (gtk_dialog_run ((GtkDialog *)dialog) == GTK_RESPONSE_ACCEPT)
++    if (gtk_native_dialog_run (GTK_NATIVE_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
+     {
+         file_name = gtk_file_chooser_get_filename((GtkFileChooser *)dialog);
+         if (load_virtual_disk (file_name, vector) >= 0)
+@@ -370,7 +370,7 @@ static void open_file (GtkButton *button, struct FILE_VECTOR *vector)
+         }
+         g_free (file_name);
+     }
+-    gtk_widget_hide(dialog);
++    gtk_native_dialog_hide(GTK_NATIVE_DIALOG(dialog));
+     (void)button;
+ }
+ 
 diff --git a/src/linux/ugui/umemo.c b/src/linux/ugui/umemo.c
-index b81de33..066f404 100644
+index b81de33..f1222fa 100644
 --- a/src/linux/ugui/umemo.c
 +++ b/src/linux/ugui/umemo.c
-@@ -203,11 +203,11 @@ static void open_file (GtkButton *button, gpointer data)
+@@ -198,16 +198,16 @@ static void open_file (GtkButton *button, gpointer data)
+ {
+     static int first=1;
+     GtkFileFilter *filter;
+-    static GtkWidget *dialog;
++    static GtkFileChooserNative *dialog;
+     char *folder_name;
      char *file_name;
  
      if (first) {
@@ -68,27 +122,62 @@ index b81de33..066f404 100644
          filter = gtk_file_filter_new ();
          gtk_file_filter_set_name (filter, is_fr?"Fichiers cartouche (.m7)":"Cartridge files (.m7)");
          gtk_file_filter_add_mime_type (filter, "application/x-thomson-cartridge-memo7");
+@@ -234,7 +234,7 @@ static void open_file (GtkButton *button, gpointer data)
+     if (access("./disks/", F_OK) == 0)
+         (void)gtk_file_chooser_set_current_folder((GtkFileChooser *)dialog, "./memo/");
+ 
+-    if (gtk_dialog_run ((GtkDialog *)dialog) == GTK_RESPONSE_ACCEPT)
++    if (gtk_native_dialog_run (GTK_NATIVE_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
+     {
+         file_name = gtk_file_chooser_get_filename((GtkFileChooser *)dialog);
+         if (memo_Load(file_name) < 0)
+@@ -257,7 +257,7 @@ static void open_file (GtkButton *button, gpointer data)
+         }
+         g_free (file_name);
+     }
+-    gtk_widget_hide(dialog);
++    gtk_native_dialog_hide(GTK_NATIVE_DIALOG(dialog));
+     (void)button;
+     (void)data;
+ }
 diff --git a/src/linux/ugui/uprinter.c b/src/linux/ugui/uprinter.c
-index f37bfdc..05dcca2 100644
+index f37bfdc..5984006 100644
 --- a/src/linux/ugui/uprinter.c
 +++ b/src/linux/ugui/uprinter.c
-@@ -173,13 +173,13 @@ void uprinter_Init (GtkWidget *notebook)
+@@ -152,7 +152,6 @@ void uprinter_Init (GtkWidget *notebook)
+     GtkWidget *hbox, *hbox2;
+     GtkWidget *widget;
+     GtkWidget *combo;
+-    GtkWidget *dialog;
+     GtkWidget *frame;
+ 
+     /* frame de la cartouche */
+@@ -173,21 +172,17 @@ void uprinter_Init (GtkWidget *notebook)
      gtk_box_pack_start( GTK_BOX(hbox2), widget, FALSE, FALSE, 0);
  
      /* dialog pour le r�pertoire */
 -    dialog = gtk_file_chooser_dialog_new (
-+    dialog = gtk_file_chooser_native_new (
++    widget = gtk_file_chooser_button_new (
               is_fr?"Sélectionner un répertoire de sauvegarde"
                    :"Select the folder to save in",
-              (GtkWindow *) wControl,
-              GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER,
+-             (GtkWindow *) wControl,
+-             GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER,
 -             is_fr?"_Annuler":"_Cancel", GTK_RESPONSE_CANCEL,
 -             is_fr?"_Ouvrir":"_Open", GTK_RESPONSE_ACCEPT, NULL);
-+             is_fr?"_Ouvrir":"_Open",
-+             is_fr?"_Annuler":"_Cancel");
++             GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER);
      gtk_file_chooser_set_current_folder(
-                      (GtkFileChooser *)dialog,
+-                     (GtkFileChooser *)dialog,
++                     (GtkFileChooser *)widget,
                       (teo.lprt.folder == NULL)?"":teo.lprt.folder);
+-    g_signal_connect(G_OBJECT(dialog),
++    g_signal_connect(G_OBJECT(widget),
+                      "current-folder-changed",
+                      G_CALLBACK(folder_changed),
+                      (gpointer) NULL);
+-    widget = gtk_file_chooser_button_new_with_dialog (dialog);
+     gtk_box_pack_start( GTK_BOX(hbox2), widget, FALSE, FALSE, 0);
+ 
+     /* ---------------- Options ------------------- */
 -- 
 2.17.1
 
