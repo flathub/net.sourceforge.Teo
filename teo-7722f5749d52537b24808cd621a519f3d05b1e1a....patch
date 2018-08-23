@@ -1,7 +1,7 @@
 From 63963cb013099ab92bfe38d4ad2081a4ebb19bf7 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Fran=C3=A7ois=20Mouret?= <unknown>
 Date: Sat, 11 Nov 2017 18:32:35 +0100
-Subject: [PATCH 01/33] Right side of the keyboard for joystick 0
+Subject: [PATCH 01/36] Right side of the keyboard for joystick 0
 
 Keys : i o p k l m ; : !
 ---
@@ -195,7 +195,7 @@ index e9bef1e..fa7abca 100644
 From 3b26df360c0bbc2fb7f9ae74242cebae01681d8e Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Fran=C3=A7ois=20Mouret?= <unknown>
 Date: Sun, 19 Nov 2017 23:04:25 +0100
-Subject: [PATCH 02/33] Try to avoid other applications sound interference when
+Subject: [PATCH 02/36] Try to avoid other applications sound interference when
  Teo is running
 
 - Mute is activated at reset
@@ -396,7 +396,7 @@ index a7e3da3..10f7608 100644
 From 507c3e833e10f7be50690f0348d8fe6fb9d2b8cd Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Fran=C3=A7ois=20Mouret?= <unknown>
 Date: Mon, 20 Nov 2017 14:14:38 +0100
-Subject: [PATCH 03/33] Fix PLAY interference
+Subject: [PATCH 03/36] Fix PLAY interference
 
 ---
  include/teo.h      |  2 +-
@@ -577,7 +577,7 @@ index 10f7608..4889480 100644
 From 9545ab057de4ef5e71c255c02099d97e3c270419 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Fran=C3=A7ois=20Mouret?= <unknown>
 Date: Fri, 6 Apr 2018 14:01:39 +0200
-Subject: [PATCH 04/33] Restore unconditional running for protected diskette
+Subject: [PATCH 04/36] Restore unconditional running for protected diskette
  (thanks to emulix75)
 
 The gaps of the track are set to 0xf7 instead of 0x4e to avoid the disk
@@ -786,7 +786,7 @@ index 2a97bee..9f03cc5 100644
 From c30acf0ae752a59073ca020a80dd900ded7560c1 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Fran=C3=A7ois=20Mouret?= <unknown>
 Date: Fri, 6 Apr 2018 20:10:36 +0200
-Subject: [PATCH 05/33] Left keypad used as joystick must return the
+Subject: [PATCH 05/36] Left keypad used as joystick must return the
  corresponding key
 
 ... otherwise, it's a big surprise if the whole keyboard doesn't
@@ -1067,7 +1067,7 @@ index fa7abca..5396690 100644
 From c44c5622d8a7b97b8f0a0dd9088581089dbdeaf2 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Fran=C3=A7ois=20Mouret?= <unknown>
 Date: Fri, 6 Apr 2018 20:11:14 +0200
-Subject: [PATCH 06/33] Documentation update
+Subject: [PATCH 06/36] Documentation update
 
 ---
  change-en.log           | 12 +++++++++++-
@@ -1230,7 +1230,7 @@ index e7816c4..008f06d 100644
 From 7c89fae751940d5728e324e46bf0f49d695b49e3 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Fran=C3=A7ois=20Mouret?= <unknown>
 Date: Fri, 6 Apr 2018 20:11:48 +0200
-Subject: [PATCH 07/33] Version update
+Subject: [PATCH 07/36] Version update
 
 ---
  misc/fixver.sh | 2 +-
@@ -1256,7 +1256,7 @@ index feec46f..5395765 100755
 From e3eef01749f9cecebc4a7dec8f3c58d6e70b7c91 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Fran=C3=A7ois=20Mouret?= <unknown>
 Date: Fri, 6 Apr 2018 20:14:00 +0200
-Subject: [PATCH 08/33] Update version number in every files
+Subject: [PATCH 08/36] Update version number in every files
 
 ---
  LISEZMOI.txt                                           |  4 ++--
@@ -5248,7 +5248,7 @@ index 542ece7..827b536 100644
 From b757fb519dc742efa57483af81caa540d5ec0308 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Fran=C3=A7ois=20Mouret?= <unknown>
 Date: Sun, 8 Apr 2018 19:14:29 +0200
-Subject: [PATCH 09/33] Improvement of the disk controller (thanks to emulix75)
+Subject: [PATCH 09/36] Improvement of the disk controller (thanks to emulix75)
 
 track.curr and track.last must not be cleared until at least a cold reset of
 the computer, because the registers $6052 and $6254, which are the number of
@@ -5347,7 +5347,7 @@ index ba0df67..8059e74 100644
 From 319aa72b96c29c61b9e297263c2dad87b90254e8 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Fran=C3=A7ois=20Mouret?= <unknown>
 Date: Sun, 8 Apr 2018 19:22:41 +0200
-Subject: [PATCH 10/33] fonctions inlined and not inlined must not be mixed
+Subject: [PATCH 10/36] fonctions inlined and not inlined must not be mixed
 
 ---
  include/hardware.h               |  5 ++++-
@@ -5425,7 +5425,7 @@ index 31c455a..f5324b5 100644
 From 0de97c0cf6436d4fd4e30447a6a6dfc651e6406e Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Fran=C3=A7ois=20Mouret?= <unknown>
 Date: Mon, 9 Apr 2018 13:59:48 +0200
-Subject: [PATCH 11/33] Avoiding other programs sound interferences not needed
+Subject: [PATCH 11/36] Avoiding other programs sound interferences not needed
  anymore?
 
 If sound is silenced for $E7CF, it sounds scratched.
@@ -5467,7 +5467,7 @@ index 4cad8fd..9eaf7f2 100644
 From f8c95cfed3857d95991cc26218b4f208a461e30b Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Fran=C3=A7ois=20Mouret?= <unknown>
 Date: Mon, 9 Apr 2018 17:07:42 +0200
-Subject: [PATCH 12/33] Restore previous state to fix commit comments
+Subject: [PATCH 12/36] Restore previous state to fix commit comments
 
 ---
  src/media/disk/daccess.c | 2 ++
@@ -5562,7 +5562,7 @@ index 8059e74..ba0df67 100644
 From e216b6b7b0cc372a977849ccf83bab8f86e84e71 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Fran=C3=A7ois=20Mouret?= <unknown>
 Date: Mon, 9 Apr 2018 17:08:57 +0200
-Subject: [PATCH 13/33] Improvement of the disk controller (thanks to emulix75)
+Subject: [PATCH 13/36] Improvement of the disk controller (thanks to emulix75)
 
 track.curr and track.last must not be cleared until at least a cold reset of
 the computer, because the registers $6052 and $6054, which are the number of
@@ -5661,7 +5661,7 @@ index ba0df67..8059e74 100644
 From 730a9d51f2b9bd74ee5defc5c0145641d774d8a8 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Fran=C3=A7ois=20Mouret?= <unknown>
 Date: Thu, 12 Apr 2018 15:26:50 +0200
-Subject: [PATCH 14/33] Remove teo.desktop from cc90hfe DEBIAN
+Subject: [PATCH 14/36] Remove teo.desktop from cc90hfe DEBIAN
 
 Why? Don't know. It wasn't supposed to be there.
 ---
@@ -6338,7 +6338,7 @@ index cea5940..0000000
 From 7ddce9d13219bc1621028a0a40d4ad52ea79bd9e Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Fran=C3=A7ois=20Mouret?= <unknown>
 Date: Sat, 14 Apr 2018 10:32:09 +0200
-Subject: [PATCH 15/33] Add parent window for MessageBox() under Windows
+Subject: [PATCH 15/36] Add parent window for MessageBox() under Windows
  (thanks to emulix75)
 
 ... otherwise, the MessageBox() could not appear on screen.
@@ -6366,7 +6366,7 @@ index 47081fd..5458bc5 100644
 From a0534955e625a56519c0032f269707f90149f46c Mon Sep 17 00:00:00 2001
 From: Bastien Nocera <hadess@hadess.net>
 Date: Sun, 10 Jun 2018 12:45:07 +0200
-Subject: [PATCH 16/33] linux: Remove unused variables
+Subject: [PATCH 16/36] linux: Remove unused variables
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -6404,7 +6404,7 @@ index e124d0c..32aed1d 100644
 From a0c4e9fac1b20d8ffc1496d03c23a4e08f0dfa73 Mon Sep 17 00:00:00 2001
 From: Bastien Nocera <hadess@hadess.net>
 Date: Sun, 10 Jun 2018 12:46:17 +0200
-Subject: [PATCH 17/33] sap: Fix warning in Linux floppy backend
+Subject: [PATCH 17/36] sap: Fix warning in Linux floppy backend
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -6444,7 +6444,7 @@ index 1ad877e..e5ee986 100644
 From 3a4b5e7d0ee2a8fd270eb729c3515cd85b245588 Mon Sep 17 00:00:00 2001
 From: Bastien Nocera <hadess@hadess.net>
 Date: Fri, 15 Jun 2018 18:59:31 +0200
-Subject: [PATCH 18/33] linux: Force the use of X11
+Subject: [PATCH 18/36] linux: Force the use of X11
 
 Otherwise GTK+ would try to use the Wayland backend on Wayland, and we
 would crash very early.
@@ -6487,7 +6487,7 @@ index 208fbdd..cfb10e3 100644
 From f415ade2dec61d35d8cc3b7915473ea44126d8fe Mon Sep 17 00:00:00 2001
 From: Bastien Nocera <hadess@hadess.net>
 Date: Fri, 15 Jun 2018 22:49:08 +0200
-Subject: [PATCH 19/33] Revert "linux: Remove unused variables"
+Subject: [PATCH 19/36] Revert "linux: Remove unused variables"
 
 This reverts commit a0534955e625a56519c0032f269707f90149f46c.
 ---
@@ -6513,7 +6513,7 @@ index 32aed1d..e124d0c 100644
 From 1d1df1d329567b7926cc8650f7f7d0a4735ffeb6 Mon Sep 17 00:00:00 2001
 From: Bastien Nocera <hadess@hadess.net>
 Date: Tue, 19 Jun 2018 21:39:55 +0200
-Subject: [PATCH 20/33] memo: Fix loading LOGO MEMO7 cartridge
+Subject: [PATCH 20/36] memo: Fix loading LOGO MEMO7 cartridge
 
 Ignore leading NUL characters at the start of MEMO7 cartridges, both
 when verifying the ROM, and getting its label.
@@ -6584,7 +6584,7 @@ index 92ddb28..f6c22a7 100644
 From 61a1f7a4c4ed4b4cdf824fefc2ba34cce50e6d9f Mon Sep 17 00:00:00 2001
 From: Bastien Nocera <hadess@hadess.net>
 Date: Tue, 19 Jun 2018 21:41:03 +0200
-Subject: [PATCH 21/33] memo: Fix typo in comment
+Subject: [PATCH 21/36] memo: Fix typo in comment
 
 ---
  src/media/memo.c | 2 +-
@@ -6610,7 +6610,7 @@ index f6c22a7..ac195a4 100644
 From 04e65bb37dcf952a23366e9517f3483e336eb118 Mon Sep 17 00:00:00 2001
 From: Bastien Nocera <hadess@hadess.net>
 Date: Tue, 19 Jun 2018 21:38:42 +0200
-Subject: [PATCH 22/33] linux: Fix crash when initialising colours
+Subject: [PATCH 22/36] linux: Fix crash when initialising colours
 
 When run in debug mode under valgrind, we crash because we try to
 initialise the flags of the wrong colour array.
@@ -6651,7 +6651,7 @@ index 591b02e..ad1ebd3 100644
 From 03cf92ba35309302a3cb4d015683c392bb1b9335 Mon Sep 17 00:00:00 2001
 From: Bastien Nocera <hadess@hadess.net>
 Date: Thu, 21 Jun 2018 15:05:10 +0200
-Subject: [PATCH 23/33] linux: Remove Version entry from desktop file
+Subject: [PATCH 23/36] linux: Remove Version entry from desktop file
 
 The version field is for the version of the desktop entry specification
 that the desktop file conforms to, not the version of the software:
@@ -6683,7 +6683,7 @@ index 5b9d8bd..06aa84d 100644
 From 7e4d211f755657b8b944afc290651650e0176493 Mon Sep 17 00:00:00 2001
 From: Bastien Nocera <hadess@hadess.net>
 Date: Thu, 21 Jun 2018 15:15:08 +0200
-Subject: [PATCH 24/33] misc: Remove Version change in teo.sh
+Subject: [PATCH 24/36] misc: Remove Version change in teo.sh
 
 As we've shown, the Version field in the desktop file isn't the
 application's version, so don't try to change it.
@@ -6711,7 +6711,7 @@ index 557d30b..3010115 100755
 From c8c21b160892111fbe9dfb37ff6d32e268c2245e Mon Sep 17 00:00:00 2001
 From: Bastien Nocera <hadess@hadess.net>
 Date: Thu, 21 Jun 2018 15:14:01 +0200
-Subject: [PATCH 25/33] linux: Rename desktop and icon files
+Subject: [PATCH 25/36] linux: Rename desktop and icon files
 
 To be namespaced as expected from modern Linux applications. This makes
 sure that Teo's name is unique amongst applications.
@@ -6749,7 +6749,7 @@ rename to misc/pack/repo/linux/debian/teo/usr/share/pixmaps/net.sourceforge.Teo.
 From 4efe6e93a0458a98a7b2db28f8ea9bf89de6096a Mon Sep 17 00:00:00 2001
 From: Bastien Nocera <hadess@hadess.net>
 Date: Thu, 21 Jun 2018 16:00:50 +0200
-Subject: [PATCH 26/33] linux: Add AppStream metadata
+Subject: [PATCH 26/36] linux: Add AppStream metadata
 
 This will be used in interfaces like GNOME Software to present
 third-party applications.
@@ -6796,7 +6796,7 @@ index 0000000..74ce234
 From 8f16a7188d109099c131addb823909ca8dce23f6 Mon Sep 17 00:00:00 2001
 From: Bastien Nocera <hadess@hadess.net>
 Date: Thu, 21 Jun 2018 16:08:36 +0200
-Subject: [PATCH 27/33] linux: Remove extension from Icon entry in .desktop
+Subject: [PATCH 27/36] linux: Remove extension from Icon entry in .desktop
  file
 
 From desktop-file-validate:
@@ -6830,7 +6830,7 @@ index 9346ab7..22dc210 100644
 From 982e6cd082bed2dd019575020aba27ccf20ac046 Mon Sep 17 00:00:00 2001
 From: Bastien Nocera <hadess@hadess.net>
 Date: Fri, 22 Jun 2018 12:48:21 +0200
-Subject: [PATCH 28/33] linux: Update mime-types with upstream
+Subject: [PATCH 28/36] linux: Update mime-types with upstream
 
 All the mime-types used by Teo are now upstream, including aliases for
 the old mime-types Teo used. The teo.xml mime-type file now includes all
@@ -6936,7 +6936,7 @@ index 760b378..bcbc667 100644
 From 33712a88dea2f29421815519e1970c25b3e2aa17 Mon Sep 17 00:00:00 2001
 From: Bastien Nocera <hadess@hadess.net>
 Date: Fri, 22 Jun 2018 12:51:36 +0200
-Subject: [PATCH 29/33] media: Make list of floppy types extensible
+Subject: [PATCH 29/36] media: Make list of floppy types extensible
 
 Replace magic number "7" with a macro.
 ---
@@ -6973,7 +6973,7 @@ index 63774d9..845d7de 100644
 From 8e9ed29c0a0f609bd3c7da0cfbbd342b0a57bd23 Mon Sep 17 00:00:00 2001
 From: Bastien Nocera <hadess@hadess.net>
 Date: Fri, 22 Jun 2018 16:16:36 +0200
-Subject: [PATCH 30/33] appdata: Add OARS metadata
+Subject: [PATCH 30/36] appdata: Add OARS metadata
 
 From the Open Age Ratings Service:
 https://hughsie.github.io/oars/
@@ -6998,7 +6998,7 @@ index 74ce234..09ac215 100644
 From a12b70c9be24da807c0c05395b632bc4d346a6f4 Mon Sep 17 00:00:00 2001
 From: Bastien Nocera <hadess@hadess.net>
 Date: Sat, 23 Jun 2018 16:48:18 +0200
-Subject: [PATCH 31/33] linux: Add another glob for Raw Floppy Disk Images
+Subject: [PATCH 31/36] linux: Add another glob for Raw Floppy Disk Images
 
 To support *.qd files as well as *.fd
 ---
@@ -7024,7 +7024,7 @@ index bcbc667..6469d7b 100644
 From 95c4bd43b7e20df5217b963930235eb8de7c64a0 Mon Sep 17 00:00:00 2001
 From: Bastien Nocera <hadess@hadess.net>
 Date: Sat, 23 Jun 2018 16:49:11 +0200
-Subject: [PATCH 32/33] linux: Use mime-types instead of patterns
+Subject: [PATCH 32/36] linux: Use mime-types instead of patterns
 
 Those will be more precise, as magic might be applied, and the
 mime-types we ship are sufficiently new to cover this usage.
@@ -7091,7 +7091,7 @@ index 067e451..b81de33 100644
 From bf1f757ad5e410c515f3e40aa218d4e8bead8da7 Mon Sep 17 00:00:00 2001
 From: Bastien Nocera <hadess@hadess.net>
 Date: Sat, 23 Jun 2018 16:50:18 +0200
-Subject: [PATCH 33/33] cc90hfe: Use mime-types for filters on Linux
+Subject: [PATCH 33/36] cc90hfe: Use mime-types for filters on Linux
 
 ---
  tools/cc90hfe/src/linux/gui/archive.c | 3 +--
@@ -7126,6 +7126,114 @@ index 988c30b..cdb7278 100644
      gtk_file_chooser_add_filter (GTK_FILE_CHOOSER (dialog), filter);
  
      /* waits for construction to be finished */
+-- 
+2.17.1
+
+
+From ce74062a62640b2c58e40aaf6f2f769cb9cfaf90 Mon Sep 17 00:00:00 2001
+From: Bastien Nocera <hadess@hadess.net>
+Date: Wed, 27 Jun 2018 19:59:35 +0200
+Subject: [PATCH 34/36] linux: Fix warning in Linux floppy backend
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+See also "sap: Fix warning in Linux floppy backend"
+
+src/linux/ufloppy.c: In function ‘open_floppy’:
+src/linux/ufloppy.c:104:48: warning: ‘%d’ directive output may be truncated writing between 1 and 11 bytes into a region of size 9 [-Wformat-truncation=]
+     snprintf(dev_str, sizeof(dev_str), "/dev/fd%d", drive);
+                                                ^~
+src/linux/ufloppy.c:104:40: note: directive argument in the range [-1073741824, 1073741823]
+     snprintf(dev_str, sizeof(dev_str), "/dev/fd%d", drive);
+                                        ^~~~~~~~~~~
+src/linux/ufloppy.c:104:5: note: ‘snprintf’ output between 9 and 19 bytes into a destination of size 16
+     snprintf(dev_str, sizeof(dev_str), "/dev/fd%d", drive);
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---
+ src/linux/ufloppy.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/src/linux/ufloppy.c b/src/linux/ufloppy.c
+index 60e4dcf..17bc669 100644
+--- a/src/linux/ufloppy.c
++++ b/src/linux/ufloppy.c
+@@ -101,6 +101,10 @@ static int open_floppy(int drive)
+ {
+     char dev_str[16];
+ 
++   if (drive > (1 << 5) ||
++       drive < -(1 << 5))
++       return 0;
++
+     snprintf(dev_str, sizeof(dev_str), "/dev/fd%d", drive);
+ 
+     if ((fd[drive]=open(dev_str, O_RDWR | O_NDELAY))<0)
+-- 
+2.17.1
+
+
+From 1e13842ad4d4495fa391a9da6fe2f623b82d906c Mon Sep 17 00:00:00 2001
+From: Bastien Nocera <hadess@hadess.net>
+Date: Wed, 27 Jun 2018 20:01:37 +0200
+Subject: [PATCH 35/36] cc90hfe: Fix build error in Linux backend
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+This code would only compile on a 32-bit system. Use GINT_TO_POINTER
+instead to cast that integer safely.
+
+src/linux/progress.c: In function ‘progress_Run’:
+src/linux/progress.c:139:37: error: cast to pointer from integer of different size [-Werror=int-to-pointer-cast]
+                                     (gpointer) (data),
+---
+ tools/cc90hfe/src/linux/progress.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tools/cc90hfe/src/linux/progress.c b/tools/cc90hfe/src/linux/progress.c
+index 31aca82..4a509e5 100644
+--- a/tools/cc90hfe/src/linux/progress.c
++++ b/tools/cc90hfe/src/linux/progress.c
+@@ -136,7 +136,7 @@ void progress_Run (int (*process)(void))
+                                     G_PRIORITY_DEFAULT,
+                                     250,
+                                     (GSourceFunc)progress_update_bar,
+-                                    (gpointer)data,
++                                    GINT_TO_POINTER(data),
+                                     (GDestroyNotify)progress_exit);
+ 
+             thread_process = g_thread_new (
+-- 
+2.17.1
+
+
+From be360657076c70f99c70d530740a034cc4922706 Mon Sep 17 00:00:00 2001
+From: Bastien Nocera <hadess@hadess.net>
+Date: Thu, 23 Aug 2018 16:58:22 +0200
+Subject: [PATCH 36/36] appdata: Only mark the first screenshot as "default"
+
+---
+ .../teo/usr/share/metainfo/net.sourceforge.Teo.appdata.xml  | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/misc/pack/repo/linux/debian/teo/usr/share/metainfo/net.sourceforge.Teo.appdata.xml b/misc/pack/repo/linux/debian/teo/usr/share/metainfo/net.sourceforge.Teo.appdata.xml
+index 09ac215..950a9e4 100644
+--- a/misc/pack/repo/linux/debian/teo/usr/share/metainfo/net.sourceforge.Teo.appdata.xml
++++ b/misc/pack/repo/linux/debian/teo/usr/share/metainfo/net.sourceforge.Teo.appdata.xml
+@@ -17,9 +17,9 @@
+   <url type="homepage">https://sourceforge.net/projects/teoemulator/</url>
+   <screenshots>
+     <screenshot type="default" width="354" height="234">https://a.fsdn.com/con/app/proj/teoemulator/screenshots/teo.png/max/max/1</screenshot>
+-    <screenshot type="default" width="354" height="234">https://a.fsdn.com/con/app/proj/teoemulator/screenshots/teos2.png/max/max/1</screenshot>
+-    <screenshot type="default" width="354" height="234">https://a.fsdn.com/con/app/proj/teoemulator/screenshots/teos3.png/max/max/1</screenshot>
+-    <screenshot type="default" width="354" height="234">https://a.fsdn.com/con/app/proj/teoemulator/screenshots/teos4.png/max/max/1</screenshot>
++    <screenshot width="354" height="234">https://a.fsdn.com/con/app/proj/teoemulator/screenshots/teos2.png/max/max/1</screenshot>
++    <screenshot width="354" height="234">https://a.fsdn.com/con/app/proj/teoemulator/screenshots/teos3.png/max/max/1</screenshot>
++    <screenshot width="354" height="234">https://a.fsdn.com/con/app/proj/teoemulator/screenshots/teos4.png/max/max/1</screenshot>
+   </screenshots>
+   <updatecontact>hadess@hadess.net</updatecontact>
+   <content_rating type="oars-1.0" />
 -- 
 2.17.1
 
