@@ -8,7 +8,9 @@
         /* X11 + XShm access */
         "--share=ipc", "--socket=x11",
         /* Play sounds */
-        "--socket=pulseaudio"
+        "--socket=pulseaudio",
+        /* Joystick access */
+        "--device=all"
     ],
     "build-options" : {
         "cflags" : "-O2 -g",
