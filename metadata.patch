@@ -1,0 +1,84 @@
+From 9993feb367856899e17c15b40224c178d69bffc8 Mon Sep 17 00:00:00 2001
+From: Bastien Nocera <hadess@hadess.net>
+Date: Wed, 10 Jul 2019 15:46:32 +0200
+Subject: [PATCH 1/3] appdata: Fix update contact tag
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+From appstream-util validate:
+• tag-invalid           : <updatecontact> should be <update_contact>
+---
+ .../teo/usr/share/metainfo/net.sourceforge.Teo.appdata.xml      | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/misc/pack/repo/linux/debian/teo/usr/share/metainfo/net.sourceforge.Teo.appdata.xml b/misc/pack/repo/linux/debian/teo/usr/share/metainfo/net.sourceforge.Teo.appdata.xml
+index 92da02218c1e..1a2ad9fdc3d6 100644
+--- a/misc/pack/repo/linux/debian/teo/usr/share/metainfo/net.sourceforge.Teo.appdata.xml
++++ b/misc/pack/repo/linux/debian/teo/usr/share/metainfo/net.sourceforge.Teo.appdata.xml
+@@ -46,6 +46,6 @@
+   <releases>
+     <release version="1.8.4" timestamp="1478090785"/>
+   </releases>
+-  <updatecontact>hadess@hadess.net</updatecontact>
++  <update_contact>hadess@hadess.net</update_contact>
+   <content_rating type="oars-1.0" />
+ </component>
+-- 
+2.54.0
+
+
+From 70a15e78b2f5cb9f24a7d8911544fec54f4283be Mon Sep 17 00:00:00 2001
+From: Bastien Nocera <hadess@hadess.net>
+Date: Mon, 29 Jun 2026 00:27:18 +0200
+Subject: [PATCH 2/3] appdata: Fix desktop-app-launchable-omitted error
+
+Error: Appstream: 'E:net.sourceforge.Teo.metainfo.xml:desktop-app-launchable-omitted This `desktop-application` component has no `desktop-id` launchable tag, however it contains all the necessary information to display the application. The omission of the launchable entry means that this application can not be launched directly from installers or software centers. If this is intended, this information can be ignored, otherwise it is strongly recommended to add a launchable tag as well.'
+---
+ .../teo/usr/share/metainfo/net.sourceforge.Teo.appdata.xml       | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/misc/pack/repo/linux/debian/teo/usr/share/metainfo/net.sourceforge.Teo.appdata.xml b/misc/pack/repo/linux/debian/teo/usr/share/metainfo/net.sourceforge.Teo.appdata.xml
+index 1a2ad9fdc3d6..b01bd9eeeb1b 100644
+--- a/misc/pack/repo/linux/debian/teo/usr/share/metainfo/net.sourceforge.Teo.appdata.xml
++++ b/misc/pack/repo/linux/debian/teo/usr/share/metainfo/net.sourceforge.Teo.appdata.xml
+@@ -2,6 +2,7 @@
+ <!-- Copyright 2018 Bastien Nocera <hadess@hadess.net> -->
+ <component type="desktop">
+   <id>net.sourceforge.Teo.desktop</id>
++  <launchable type="desktop-id">net.sourceforge.Teo.desktop</launchable>
+   <name>Teo</name>
+   <name xml:lang="fr">Teo</name>
+   <summary>Thomson TO8D emulator</summary>
+-- 
+2.54.0
+
+
+From 0cfe3008c2e9c186f8497729fa54ae952375e178 Mon Sep 17 00:00:00 2001
+From: Bastien Nocera <hadess@hadess.net>
+Date: Mon, 29 Jun 2026 00:28:52 +0200
+Subject: [PATCH 3/3] desktop: Remove Unity specific entries
+
+Error: Desktop file: 'error: file contains group "Reset Shortcut Group", but groups extending the format should start with "X-"'
+---
+ .../teo/usr/share/applications/net.sourceforge.Teo.desktop | 7 -------
+ 1 file changed, 7 deletions(-)
+
+diff --git a/misc/pack/repo/linux/debian/teo/usr/share/applications/net.sourceforge.Teo.desktop b/misc/pack/repo/linux/debian/teo/usr/share/applications/net.sourceforge.Teo.desktop
+index 278a9547f8f7..750a926297ef 100644
+--- a/misc/pack/repo/linux/debian/teo/usr/share/applications/net.sourceforge.Teo.desktop
++++ b/misc/pack/repo/linux/debian/teo/usr/share/applications/net.sourceforge.Teo.desktop
+@@ -11,10 +11,3 @@ Categories=GNOME;GTK;Game;Emulator;
+ Exec=/usr/games/teo
+ Terminal=false
+ Icon=net.sourceforge.Teo
+-X-Ayatana-Desktop-Shortcuts=Reset;
+-
+-[Reset Shortcut Group]
+-Exec=/usr/games/teo --reset
+-Name=Teo emulator + cold reset
+-Name[fr]=Emulateur Teo + reset à froid
+-OnlyShowIn=Unity
+-- 
+2.54.0
+
