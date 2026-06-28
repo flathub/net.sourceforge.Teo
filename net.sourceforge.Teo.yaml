@@ -21,8 +21,9 @@ modules:
       - ./autogen.sh
       - DEBIANBUILD=1 DEBUGMODE=1 make
       - install -m0755 -D teo /app/bin/teo
-      - install -m0644 -D misc/pack/repo/linux/debian/teo/usr/share/pixmaps/${FLATPAK_ID}.png
-        /app/share/icons/${FLATPAK_ID}.png
+      - mkdir -p /app/share/icons/hicolor/256x256/apps/
+      - cp misc/pack/repo/linux/debian/teo/usr/share/pixmaps/${FLATPAK_ID}.png
+        /app/share/icons/hicolor/256x256/apps/
       - install -m0644 -D misc/pack/repo/linux/debian/teo/usr/share/applications/${FLATPAK_ID}.desktop
         /app/share/applications/${FLATPAK_ID}.desktop
       - sed -i 's,/usr/games/,/app/bin/,' /app/share/applications/${FLATPAK_ID}.desktop
