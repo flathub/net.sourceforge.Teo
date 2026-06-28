@@ -49,3 +49,6 @@ modules:
       - type: patch
         path: 0001-linux-Fix-location-of-data-files.patch
         use-git-am: true
+      - type: patch
+        path: metadata.patch
+        use-git-am: true
