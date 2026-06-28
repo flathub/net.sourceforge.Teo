@@ -1,6 +1,6 @@
 app-id: net.sourceforge.Teo
 runtime: org.gnome.Platform
-runtime-version: '45'
+runtime-version: '50'
 sdk: org.gnome.Sdk
 command: teo
 finish-args:
