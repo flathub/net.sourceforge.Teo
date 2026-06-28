@@ -21,13 +21,13 @@ modules:
       - ./autogen.sh
       - DEBIANBUILD=1 DEBUGMODE=1 make
       - install -m0755 -D teo /app/bin/teo
-      - install -m0644 -D misc/pack/repo/linux/debian/teo/usr/share/pixmaps/net.sourceforge.Teo.png
-        /app/share/icons/net.sourceforge.Teo.png
-      - install -m0644 -D misc/pack/repo/linux/debian/teo/usr/share/applications/net.sourceforge.Teo.desktop
-        /app/share/applications/net.sourceforge.Teo.desktop
-      - sed -i 's,/usr/games/,/app/bin/,' /app/share/applications/net.sourceforge.Teo.desktop
-      - install -m0644 -D misc/pack/repo/linux/debian/teo/usr/share/metainfo/net.sourceforge.Teo.appdata.xml
-        /app/share/metainfo/net.sourceforge.Teo.appdata.xml
+      - install -m0644 -D misc/pack/repo/linux/debian/teo/usr/share/pixmaps/${FLATPAK_ID}.png
+        /app/share/icons/${FLATPAK_ID}.png
+      - install -m0644 -D misc/pack/repo/linux/debian/teo/usr/share/applications/${FLATPAK_ID}.desktop
+        /app/share/applications/${FLATPAK_ID}.desktop
+      - sed -i 's,/usr/games/,/app/bin/,' /app/share/applications/${FLATPAK_ID}.desktop
+      - install -m0644 -D misc/pack/repo/linux/debian/teo/usr/share/metainfo/${FLATPAK_ID}.appdata.xml
+        /app/share/metainfo/${FLATPAK_ID}.appdata.xml
       - install -d /app/share/teo/
       - cp -r system/ /app/share/teo/
     sources:
